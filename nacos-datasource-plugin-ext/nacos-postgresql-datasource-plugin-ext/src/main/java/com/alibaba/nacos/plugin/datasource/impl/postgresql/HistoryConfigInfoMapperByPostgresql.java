@@ -19,7 +19,7 @@ package com.alibaba.nacos.plugin.datasource.impl.postgresql;
 import com.alibaba.nacos.common.utils.CollectionUtils;
 import com.alibaba.nacos.plugin.datasource.constants.DatabaseTypeConstant;
 import com.alibaba.nacos.plugin.datasource.constants.FieldConstant;
-import com.alibaba.nacos.plugin.datasource.impl.mysql.HistoryConfigInfoMapperByMySql;
+import com.alibaba.nacos.plugin.datasource.impl.base.BaseHistoryConfigInfoMapper;
 import com.alibaba.nacos.plugin.datasource.model.MapperContext;
 import com.alibaba.nacos.plugin.datasource.model.MapperResult;
 
@@ -28,7 +28,7 @@ import com.alibaba.nacos.plugin.datasource.model.MapperResult;
  *
  * @author Long Yu
  **/
-public class HistoryConfigInfoMapperByPostgresql extends HistoryConfigInfoMapperByMySql {
+public class HistoryConfigInfoMapperByPostgresql extends BaseHistoryConfigInfoMapper {
     
     @Override
     public MapperResult removeConfigHistory(MapperContext context) {
@@ -37,7 +37,7 @@ public class HistoryConfigInfoMapperByPostgresql extends HistoryConfigInfoMapper
         return new MapperResult(sql, CollectionUtils.list(context.getWhereParameter(FieldConstant.START_TIME),
                 context.getWhereParameter(FieldConstant.LIMIT_SIZE)));
     }
-    
+
     @Override
     public String getDataSource() {
         return DatabaseTypeConstant.POSTGRESQL;
